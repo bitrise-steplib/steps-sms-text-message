@@ -7,11 +7,9 @@ echo "TWILIO_SMS_FROM_NUMBER: $TWILIO_SMS_FROM_NUMBER"
 echo "TWILIO_SMS_MESSAGE: $TWILIO_SMS_MESSAGE"
 echo "TWILIO_SMS_MEDIA: $TWILIO_SMS_MEDIA"
 
-curl -X POST https://api.twilio.com/2010-04-01/Accounts/$TWILIO_ACCOUNT_SID/Messages\
-	-d "To=$TWILIO_SMS_TO_NUMBER" \
-	-d "From=$TWILIO_SMS_FROM_NUMBER" \
-	-d "Body=Concrete Twilio step $TWILIO_SMS_MESSAGE" \
-	-d "MediaUrl=TWILIO_SMS_MEDIA" \
-	-u '$TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN'
-
-	curl -X POST https://api.twilio.com/2010-04-01/Accounts/$TWILIO_ACCOUNT_SID/Messages -d "To=$TWILIO_SMS_TO_NUMBER" -d "From=$TWILIO_SMS_FROM_NUMBER" -d "Body=Concrete Twilio step $TWILIO_SMS_MESSAGE" -d "MediaUrl=TWILIO_SMS_MEDIA" -u '$TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN'
+curl -X POST "https://api.twilio.com/2010-04-01/Accounts/$TWILIO_ACCOUNT_SID/Messages.json" \
+--data-urlencode "To=$TWILIO_SMS_TO_NUMBER"  \
+--data-urlencode "From=$TWILIO_SMS_FROM_NUMBER"  \
+--data-urlencode "Body=$TWILIO_SMS_MESSAGE" \
+--data-urlencode "Media=$TWILIO_SMS_MEDIA" \
+-u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN
