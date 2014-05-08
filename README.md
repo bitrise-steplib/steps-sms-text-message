@@ -10,7 +10,11 @@ Important! https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-throug
 # Input Environment Variables
 - TWILIO_ACCOUNT_SID
 - TWILIO_AUTH_TOKEN
-- TWILIO_SMS_TO_NUMBER		#in E.164 format http://en.wikipedia.org/wiki/E.164
-- TWILIO_SMS_FROM_NUMBER	#in E.164 format http://en.wikipedia.org/wiki/E.164
+- TWILIO_SMS_TO_NUMBER		####in E.164 format http://en.wikipedia.org/wiki/E.164
+- TWILIO_SMS_FROM_NUMBER	####in E.164 format http://en.wikipedia.org/wiki/E.164
 - TWILIO_SMS_MESSAGE
-- TWILIO_SMS_MEDIA			#optional
+- TWILIO_SMS_MEDIA			####optional
+
+# How to test/run locally?
+
+TODO

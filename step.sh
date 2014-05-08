@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "TWILIO_ACCOUNT_SID: $TWILIO_ACCOUNT_SID"
 echo "TWILIO_AUTH_TOKEN: $TWILIO_AUTH_TOKEN"
