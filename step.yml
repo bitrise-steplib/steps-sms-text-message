@@ -1,0 +1,23 @@
+--- 
+name: Twilio SMS Text Message Sender
+description: |
+  SMS Text Message Sender using https://www.twilio.com/
+  To use their service you have to register first. It is possible to register a trial account for free.
+  Important! https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged 
+
+inputs:
+  - title: |
+      Twilio Account SID
+    mapped_to: TWILIO_ACCOUNT_SID
+  - title: |
+      Twilio account authentication token
+    mapped_to: TWILIO_AUTH_TOKEN
+  - title: |
+      Twilio SMS From number
+    mapped_to: TWILIO_SMS_FROM_NUMBER
+  - title: |
+      Send SMS To number (only one allowed)
+    mapped_to: TWILIO_SMS_TO_NUMBER
+  - title: |
+      SMS message
+    mapped_to: TWILIO_SMS_MESSAGE
