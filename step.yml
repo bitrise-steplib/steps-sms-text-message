@@ -1,0 +1,25 @@
+name: Twilio SMS message
+description: |
+  Concrete step to send SMS Text Messages using https://www.twilio.com/
+
+inputs:
+
+  - title: |
+      Identifier of your Twilio account
+    mapped_to: TWILIO_ACCOUNT_SID
+  - title: |
+      Authentication token for Twilio
+    mapped_to: TWILIO_AUTH_TOKEN
+  - title: |
+      The phone number where the message has to be sent
+    mapped_to: TWILIO_SMS_TO_NUMBER
+  - title: |
+      The phone number where the message has been sent from
+    mapped_to: TWILIO_SMS_FROM_NUMBER
+	- title: |
+	    The message text
+    mapped_to: TWILIO_SMS_MESSAGE
+  - title: |
+  		(optional) Additional media path to be sent as MMS
+    mapped_to: TWILIO_SMS_MEDIA
+    
