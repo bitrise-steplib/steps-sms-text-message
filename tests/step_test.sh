@@ -107,34 +107,6 @@ test_ipa_path="tests/testfile.ipa"
 test_results_success_count=0
 test_results_error_count=0
 
-# [TEST] Call the command with the minimum required parameters given, 
-# it should execute, but curl should return with authentication error
-# 
-(
-  print_new_test
-  test_env_cleanup
-
-  # Set env vars
-  export TWILIO_ACCOUNT_SID="asd1234"
-  export TWILIO_AUTH_TOKEN="dsa4321"
-  export TWILIO_SMS_TO_NUMBER="dsa4321"
-  export TWILIO_SMS_FROM_NUMBER="dsa4321"
-  export TWILIO_SMS_MESSAGE="dsa4321"
-  export TWILIO_SMS_MEDIA="dsa4321"
-
-  # All env vars should exist
-  expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
-  expect_success "TWILIO_AUTH_TOKEN environment variable should be set" is_not_empty "$TWILIO_AUTH_TOKEN"
-  expect_success "TWILIO_SMS_TO_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_TO_NUMBER"
-  expect_success "TWILIO_SMS_FROM_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_FROM_NUMBER"
-  expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
-	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
-
-  # Send sms request
-  expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
-)
-test_result=$?
-inspect_test_result $test_result
 
 # [TEST] Call the command with TWILIO_ACCOUNT_SID not set, 
 # it should raise an error message and exit
