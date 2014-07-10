@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo
 echo "TWILIO_ACCOUNT_SID: $TWILIO_ACCOUNT_SID"
 echo "TWILIO_AUTH_TOKEN: $TWILIO_AUTH_TOKEN"
 echo "TWILIO_SMS_TO_NUMBER: $TWILIO_SMS_TO_NUMBER"
@@ -14,6 +15,7 @@ res=$(curl -is -X POST "https://api.twilio.com/2010-04-01/Accounts/$TWILIO_ACCOU
 --data-urlencode "Media=$TWILIO_SMS_MEDIA" \
 -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN)
 
+echo
 echo " --- Result ---"
 echo "$res"
 echo " --------------"

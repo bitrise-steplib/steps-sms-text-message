@@ -97,12 +97,9 @@ function print_new_test {
   echo "[TEST]"
 }
 
+
 # -----------------
 # --- Run tests ---
-
-function run_target_command { 
-  print_and_do_command eval "./step.sh"
-}
 
 echo "Starting tests..."
 
@@ -115,16 +112,15 @@ test_results_error_count=0
 # 
 (
   print_new_test
-
   test_env_cleanup
 
   # Set env vars
-  TWILIO_ACCOUNT_SID="asd1234"
-  TWILIO_AUTH_TOKEN="dsa4321"
-  TWILIO_SMS_TO_NUMBER="dsa4321"
-  TWILIO_SMS_FROM_NUMBER="dsa4321"
-  TWILIO_SMS_MESSAGE="dsa4321"
-  TWILIO_SMS_MEDIA="dsa4321"
+  export TWILIO_ACCOUNT_SID="asd1234"
+  export TWILIO_AUTH_TOKEN="dsa4321"
+  export TWILIO_SMS_TO_NUMBER="dsa4321"
+  export TWILIO_SMS_FROM_NUMBER="dsa4321"
+  export TWILIO_SMS_MESSAGE="dsa4321"
+  export TWILIO_SMS_MEDIA="dsa4321"
 
   # All env vars should exist
   expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
@@ -134,27 +130,25 @@ test_results_error_count=0
   expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
 	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
 
-  # Deploy the file
-  expect_error "The command should be called, but should not complete sucessfully" run_target_command
+  # Send sms request
+  expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
 )
 test_result=$?
 inspect_test_result $test_result
-
 
 # [TEST] Call the command with TWILIO_ACCOUNT_SID not set, 
 # it should raise an error message and exit
 # 
 (
   print_new_test
-
   test_env_cleanup
 
   # Set env vars
-  TWILIO_AUTH_TOKEN="dsa4321"
-  TWILIO_SMS_TO_NUMBER="dsa4321"
-  TWILIO_SMS_FROM_NUMBER="dsa4321"
-  TWILIO_SMS_MESSAGE="dsa4321"
-  TWILIO_SMS_MEDIA="dsa4321"
+  export TWILIO_AUTH_TOKEN="dsa4321"
+  export TWILIO_SMS_TO_NUMBER="dsa4321"
+  export TWILIO_SMS_FROM_NUMBER="dsa4321"
+  export TWILIO_SMS_MESSAGE="dsa4321"
+  export TWILIO_SMS_MEDIA="dsa4321"
 
   # All env vars should exist except TWILIO_ACCOUNT_SID
   expect_error "TWILIO_ACCOUNT_SID environment variable should NOT be set" is_not_empty "$TWILIO_ACCOUNT_SID"
@@ -164,8 +158,8 @@ inspect_test_result $test_result
   expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
 	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
 
-  # Deploy the file
-  expect_error "The command should be called, but should not complete sucessfully" run_target_command
+  # Send sms request
+  expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
 )
 test_result=$?
 inspect_test_result $test_result
@@ -176,15 +170,14 @@ inspect_test_result $test_result
 # 
 (
   print_new_test
-
   test_env_cleanup
 
   # Set env vars
-  TWILIO_ACCOUNT_SID="dsa4321"
-  TWILIO_SMS_TO_NUMBER="dsa4321"
-  TWILIO_SMS_FROM_NUMBER="dsa4321"
-  TWILIO_SMS_MESSAGE="dsa4321"
-  TWILIO_SMS_MEDIA="dsa4321"
+  export TWILIO_ACCOUNT_SID="dsa4321"
+  export TWILIO_SMS_TO_NUMBER="dsa4321"
+  export TWILIO_SMS_FROM_NUMBER="dsa4321"
+  export TWILIO_SMS_MESSAGE="dsa4321"
+  export TWILIO_SMS_MEDIA="dsa4321"
 
   # All env vars should exist except TWILIO_AUTH_TOKEN
   expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
@@ -194,8 +187,8 @@ inspect_test_result $test_result
   expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
 	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
 
-  # Deploy the file
-  expect_error "The command should be called, but should not complete sucessfully" run_target_command
+  # Send sms request
+  expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
 )
 test_result=$?
 inspect_test_result $test_result
@@ -206,15 +199,14 @@ inspect_test_result $test_result
 # 
 (
   print_new_test
-
   test_env_cleanup
 
   # Set env vars
-  TWILIO_ACCOUNT_SID="dsa4321"
-  TWILIO_AUTH_TOKEN="dsa4321"
-  TWILIO_SMS_FROM_NUMBER="dsa4321"
-  TWILIO_SMS_MESSAGE="dsa4321"
-  TWILIO_SMS_MEDIA="dsa4321"
+  export TWILIO_ACCOUNT_SID="dsa4321"
+  export TWILIO_AUTH_TOKEN="dsa4321"
+  export TWILIO_SMS_FROM_NUMBER="dsa4321"
+  export TWILIO_SMS_MESSAGE="dsa4321"
+  export TWILIO_SMS_MEDIA="dsa4321"
 
   # All env vars should exist except TWILIO_SMS_TO_NUMBER
   expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
@@ -224,8 +216,8 @@ inspect_test_result $test_result
   expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
 	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
 
-  # Deploy the file
-  expect_error "The command should be called, but should not complete sucessfully" run_target_command
+  # Send sms request
+  expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
 )
 test_result=$?
 inspect_test_result $test_result
@@ -236,15 +228,14 @@ inspect_test_result $test_result
 # 
 (
   print_new_test
-
   test_env_cleanup
 
   # Set env vars
-  TWILIO_ACCOUNT_SID="dsa4321"
-  TWILIO_AUTH_TOKEN="dsa4321"
-  TWILIO_SMS_TO_NUMBER="dsa4321"
-  TWILIO_SMS_MESSAGE="dsa4321"
-  TWILIO_SMS_MEDIA="dsa4321"
+  export TWILIO_ACCOUNT_SID="dsa4321"
+  export TWILIO_AUTH_TOKEN="dsa4321"
+  export TWILIO_SMS_TO_NUMBER="dsa4321"
+  export TWILIO_SMS_MESSAGE="dsa4321"
+  export TWILIO_SMS_MEDIA="dsa4321"
 
   # All env vars should exist except TWILIO_SMS_FROM_NUMBER
   expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
@@ -254,8 +245,8 @@ inspect_test_result $test_result
   expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
 	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
 
-  # Deploy the file
-  expect_error "The command should be called, but should not complete sucessfully" run_target_command
+  # Send sms request
+  expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
 )
 test_result=$?
 inspect_test_result $test_result
@@ -266,15 +257,14 @@ inspect_test_result $test_result
 # 
 (
   print_new_test
-
   test_env_cleanup
 
   # Set env vars
-  TWILIO_ACCOUNT_SID="dsa4321"
-  TWILIO_AUTH_TOKEN="dsa4321"
-  TWILIO_SMS_TO_NUMBER="dsa4321"
-  TWILIO_SMS_FROM_NUMBER="dsa4321"
-  TWILIO_SMS_MEDIA="dsa4321"
+  export TWILIO_ACCOUNT_SID="dsa4321"
+  export TWILIO_AUTH_TOKEN="dsa4321"
+  export TWILIO_SMS_TO_NUMBER="dsa4321"
+  export TWILIO_SMS_FROM_NUMBER="dsa4321"
+  export TWILIO_SMS_MEDIA="dsa4321"
 
   # All env vars should exist except TWILIO_SMS_MESSAGE
   expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
@@ -284,8 +274,8 @@ inspect_test_result $test_result
   expect_error "TWILIO_SMS_MESSAGE environment variable should NOT be set" is_not_empty "$TWILIO_SMS_MESSAGE"
 	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
 
-  # Deploy the file
-  expect_error "The command should be called, but should not complete sucessfully" run_target_command
+  # Send sms request
+  expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
 )
 test_result=$?
 inspect_test_result $test_result
