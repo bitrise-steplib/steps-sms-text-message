@@ -1,25 +1,24 @@
-name: Twilio SMS message
+--- 
+name: Twilio SMS Text Message Sender
 description: |
-  Bitrise step to send SMS Text Messages using https://www.twilio.com/
+  SMS Text Message Sender using https://www.twilio.com/
+  To use their service you have to register first. It is possible to register a trial account for free.
+  Important! https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged 
 
 inputs:
-
   - title: |
-      Identifier of your Twilio account
+      Twilio Account SID
     mapped_to: TWILIO_ACCOUNT_SID
   - title: |
-      Authentication token for Twilio
+      Twilio account authentication token
     mapped_to: TWILIO_AUTH_TOKEN
   - title: |
-      The phone number where the message has to be sent
+      Twilio SMS From number
+    mapped_to: TWILIO_SMS_FROM_NUMBER
+  - title: |
+      Send SMS To number (only one allowed)
     mapped_to: TWILIO_SMS_TO_NUMBER
   - title: |
-      The phone number where the message has been sent from
-    mapped_to: TWILIO_SMS_FROM_NUMBER
-	- title: |
-	    The message text
+      SMS message
     mapped_to: TWILIO_SMS_MESSAGE
-  - title: |
-  		(optional) Additional media path to be sent as MMS
-    mapped_to: TWILIO_SMS_MEDIA
     
