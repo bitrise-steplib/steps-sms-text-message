@@ -1,6 +1,6 @@
 name: Twilio SMS message
 description: |
-  Concrete step to send SMS Text Messages using https://www.twilio.com/
+  Bitrise step to send SMS Text Messages using https://www.twilio.com/
 
 inputs:
 
