@@ -20,4 +20,4 @@ inputs:
     mapped_to: TWILIO_SMS_TO_NUMBER
   - title: |
       SMS message
-    mapped_to: TWILIO_SMS_MESSAGE
+    mapped_to: TWILIO_SMS_MESSAGE 
