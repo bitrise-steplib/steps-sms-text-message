@@ -47,17 +47,17 @@ if [[ ! $TWILIO_SMS_TO_NUMBER ]]; then
     echo "No phone number provided where to send the sms as environment variable. Terminating..."
     echo
     write_section_to_formatted_output "#Error"
-    write_section_to_formatted_output "Reason: No phone number provided where to send the sms."
+    write_section_to_formatted_output "Reason: No phone number provided where to send the message."
     exit 1
 fi
 
 # send from num
 if [[ ! $TWILIO_SMS_FROM_NUMBER ]]; then
 	echo
-    echo " as environment variable. Terminating..."
+    echo "No phone number provided where the message is coming from as environment variable. Terminating..."
     echo
     write_section_to_formatted_output "#Error"
-    write_section_to_formatted_output "Reason: No phone number provided where the sms is coming from"
+    write_section_to_formatted_output "Reason: No phone number provided where the message is coming from."
     exit 1
 fi
 
@@ -89,7 +89,10 @@ http_code=$(echo "$res" | grep HTTP/ | awk {'print $2'} | tail -1)
 echo " [i] http_code: $http_code"
 
 if [ "$http_code" == "201" ]; then
-    write_section_to_formatted_output "#Message sent successfully!"
+    write_section_to_formatted_output "#Message successfully sent!"
+    write_section_to_formatted_output "### From: ${TWILIO_SMS_FROM_NUMBER}"
+    write_section_to_formatted_output "### Message:"
+    write_section_to_formatted_output "${TWILIO_SMS_MESSAGE}"
     exit 0
 else
     write_section_to_formatted_output "#Error ${http_code}"
