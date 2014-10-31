@@ -1,9 +1,10 @@
 --- 
 name: Twilio SMS Text Message Sender
 description: |
-  SMS Text Message Sender using https://www.twilio.com/
+  SMS Text Message Sender using [https://www.twilio.com/](https://www.twilio.com/)
   To use their service you have to register first. It is possible to register a trial account for free.
-  Important! https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged 
+  You can find all the required information on the DashBoard tab and the Numbers tab.
+  Important! [Info about resipient charging](https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged)
 
 inputs:
   - title: |
