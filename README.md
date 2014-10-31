@@ -7,7 +7,9 @@ To use their service you have to register first. It is possible to register a tr
 
 You can find all the required information on the DashBoard tab and the Numbers tab.
 
-Important! [https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged](https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged)
+Important! [Info about resipient charging](https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged)
+
+This Step is part of the [Open StepLib](http://www.steplib.com/), you can find its StepLib page [here](http://www.steplib.com/step/twilio-sms-text-message)
 
 # Input Environment Variables
 - **TWILIO_ACCOUNT_SID**
