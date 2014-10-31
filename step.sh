@@ -1,5 +1,17 @@
 #!/bin/bash
 
+formatted_output_file_path="$BITRISE_STEP_FORMATTED_OUTPUT_FILE_PATH"
+
+function echo_string_to_formatted_output {
+  echo "$1" >> $formatted_output_file_path
+}
+
+function write_section_to_formatted_output {
+  echo '' >> $formatted_output_file_path
+  echo "$1" >> $formatted_output_file_path
+  echo '' >> $formatted_output_file_path
+}
+
 echo
 echo "TWILIO_ACCOUNT_SID: $TWILIO_ACCOUNT_SID"
 echo "TWILIO_AUTH_TOKEN: $TWILIO_AUTH_TOKEN"
@@ -14,6 +26,8 @@ if [[ ! $TWILIO_ACCOUNT_SID ]]; then
 	echo
     echo "No Account SID provided as environment variable. Terminating..."
     echo
+    write_section_to_formatted_output "#Error"
+    write_section_to_formatted_output "Reason: No account SID."
     exit 1
 fi
 
@@ -22,6 +36,8 @@ if [[ ! $TWILIO_AUTH_TOKEN ]]; then
 	echo
     echo "No Auth Token provided as environment variable. Terminating..."
     echo
+    write_section_to_formatted_output "#Error"
+    write_section_to_formatted_output "Reason: No auth token."
     exit 1
 fi
 
@@ -30,14 +46,18 @@ if [[ ! $TWILIO_SMS_TO_NUMBER ]]; then
 	echo
     echo "No phone number provided where to send the sms as environment variable. Terminating..."
     echo
+    write_section_to_formatted_output "#Error"
+    write_section_to_formatted_output "Reason: No phone number provided where to send the message."
     exit 1
 fi
 
 # send from num
 if [[ ! $TWILIO_SMS_FROM_NUMBER ]]; then
 	echo
-    echo "No phone number provided where the sms is coming from as environment variable. Terminating..."
+    echo "No phone number provided where the message is coming from as environment variable. Terminating..."
     echo
+    write_section_to_formatted_output "#Error"
+    write_section_to_formatted_output "Reason: No phone number provided where the message is coming from."
     exit 1
 fi
 
@@ -46,6 +66,8 @@ if [[ ! $TWILIO_SMS_MESSAGE ]]; then
 	echo
     echo "No text message provided as environment variable. Terminating..."
     echo
+    write_section_to_formatted_output "#Error"
+    write_section_to_formatted_output "Reason: No message."
     exit 1
 fi
 
@@ -67,7 +89,13 @@ http_code=$(echo "$res" | grep HTTP/ | awk {'print $2'} | tail -1)
 echo " [i] http_code: $http_code"
 
 if [ "$http_code" == "201" ]; then
-  exit 0
+    write_section_to_formatted_output "#Message successfully sent!"
+    write_section_to_formatted_output "### From: ${TWILIO_SMS_FROM_NUMBER}"
+    write_section_to_formatted_output "### Message:"
+    write_section_to_formatted_output "${TWILIO_SMS_MESSAGE}"
+    exit 0
 else
-  exit 1
+    write_section_to_formatted_output "#Error ${http_code}"
+    write_section_to_formatted_output "Message send failed!"
+    exit 1
 fi
