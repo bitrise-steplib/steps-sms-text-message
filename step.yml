@@ -1,23 +1,48 @@
---- 
-name: Twilio SMS Text Message Sender
+---
+name: "Twilio SMS Text Message Sender"
 description: |
-  SMS Text Message Sender using https://www.twilio.com/
-  To use their service you have to register first. It is possible to register a trial account for free.
-  Important! https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged 
+  SMS Text Message Sender using [https://www.twilio.com/](https://www.twilio.com/)
 
+  To use their service you have to register first.
+  It is possible to register a trial account for free.
+
+  Important! [Info about recipient charging](https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged)
+website: https://github.com/bitrise-io/steps-sms-text-message
+source:
+  git: https://github.com/bitrise-io/steps-sms-text-message.git
+host_os_tags:
+  - osx-10.9
+  - osx-10.10
+type_tags:
+  - "IM"
+  - "messaging"
+  - "sms"
+  - "text message"
+  - "notification"
+is_requires_admin_user: false
 inputs:
-  - title: |
-      Twilio Account SID
+  - 
     mapped_to: TWILIO_ACCOUNT_SID
-  - title: |
-      Twilio account authentication token
+    title: "Twilio Account SID"
+    is_expand: false
+    is_required: true
+  - 
     mapped_to: TWILIO_AUTH_TOKEN
-  - title: |
-      Twilio SMS From number
+    title: "Twilio account authentication token"
+    is_expand: false
+    is_required: true
+  - 
     mapped_to: TWILIO_SMS_FROM_NUMBER
-  - title: |
-      Send SMS To number (only one allowed)
+    title: "Twilio SMS From number"
+    is_expand: false
+    is_required: true
+  - 
     mapped_to: TWILIO_SMS_TO_NUMBER
-  - title: |
-      SMS message
-    mapped_to: TWILIO_SMS_MESSAGE 
+    title: "Send SMS To number (only one allowed)"
+    is_expand: false
+    is_required: true
+  - 
+    mapped_to: TWILIO_SMS_MESSAGE
+    title: "SMS message"
+    is_expand: true
+    is_required: true
