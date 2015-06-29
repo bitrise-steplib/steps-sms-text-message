@@ -41,8 +41,7 @@ func main() {
 		fmt.Errorf("Failed to clear log file", err)
 	}
 
-	// input validation
-	// required
+	// required inputs
 	accountSid := os.Getenv("TWILIO_ACCOUNT_SID")
 	if accountSid == "" {
 		errorMessageToOutput("$TWILIO_ACCOUNT_SID is not provided!")
@@ -68,7 +67,7 @@ func main() {
 		errorMessageToOutput("$TWILIO_SMS_MESSAGE is not provided!")
 		os.Exit(1)
 	}
-	// optional
+	// optional inputs
 	errorMessage := os.Getenv("TWILIO_SMS_ERROR_MESSAGE")
 	if message == "" {
 		errorMessageToOutput("$TWILIO_SMS_ERROR_MESSAGE is not provided!")
@@ -84,39 +83,45 @@ func main() {
 		}
 	}
 
-	// build out the data for our message
-	v := url.Values{}
-	v.Set("To", toNumber)
-	v.Set("From", fromNumber)
-	v.Set("Body", message)
-	rb := *strings.NewReader(v.Encode())
+	// request payload
+	values := url.Values{
+		"To":   {toNumber},
+		"From": {fromNumber},
+		"Body": {message},
+	}
+	valuesReader := *strings.NewReader(values.Encode())
 
-	// create client & request
-	client := &http.Client{}
+	// request
+	url := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
 
-	urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
-	req, _ := http.NewRequest("POST", urlStr, &rb)
-	req.SetBasicAuth(accountSid, authToken)
-	req.Header.Add("Accept", "application/json")
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-
-	// make request
-	resp, _ := client.Do(req)
-	if resp.StatusCode >= 200 && resp.StatusCode < 300 {
-		fmt.Println(resp.Status)
-		successMessageToOutput(fromNumber, toNumber, message)
-
-		var data map[string]interface{}
-		bodyBytes, _ := ioutil.ReadAll(resp.Body)
-		err := json.Unmarshal(bodyBytes, &data)
-		if err == nil {
-			fmt.Println("Response:", data)
-
-		}
-	} else {
-		fmt.Println(resp.Status)
+	request, err := http.NewRequest("POST", url, &valuesReader)
+	if err != nil {
+		fmt.Println("Failed to create requestuest:", err)
 		os.Exit(1)
 	}
 
-	os.Exit(0)
+	request.SetBasicAuth(accountSid, authToken)
+	request.Header.Add("Accept", "application/json")
+	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+	// perform request
+	client := &http.Client{}
+	response, err := client.Do(request)
+	if response.StatusCode >= 200 && response.StatusCode < 300 {
+		successMessageToOutput(fromNumber, toNumber, message)
+	} else {
+		var data map[string]interface{}
+		bodyBytes, _ := ioutil.ReadAll(response.Body)
+		err := json.Unmarshal(bodyBytes, &data)
+		if err == nil {
+			fmt.Println("Response:", data)
+		}
+
+		errorMsg := fmt.Sprintf("Status code: %s Body: %s", response.StatusCode, response.Body)
+
+		//errorMsg := "Status code: " + response.StatusCode + " Body: " + data
+		errorMessageToOutput(errorMsg)
+
+		os.Exit(1)
+	}
 }
