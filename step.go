@@ -38,7 +38,7 @@ func main() {
 	markdownlog.Setup(pth)
 	err := markdownlog.ClearLogFile()
 	if err != nil {
-		fmt.Errorf("Failed to clear log file", err)
+		fmt.Errorf("Failed to clear log file, err %s", err)
 	}
 
 	// required inputs
@@ -117,7 +117,7 @@ func main() {
 			fmt.Println("Response:", data)
 		}
 
-		errorMsg := fmt.Sprintf("Status code: %s Body: %s", response.StatusCode, response.Body)
+		errorMsg := fmt.Sprintf("Status code: %d Body: %s", response.StatusCode, response.Body)
 
 		//errorMsg := "Status code: " + response.StatusCode + " Body: " + data
 		errorMessageToOutput(errorMsg)
