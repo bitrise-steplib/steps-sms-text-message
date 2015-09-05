@@ -84,12 +84,12 @@ function is_not_empty {
 }
 
 function test_env_cleanup {
-  unset TWILIO_ACCOUNT_SID
-	unset TWILIO_AUTH_TOKEN
-	unset TWILIO_SMS_TO_NUMBER
-	unset TWILIO_SMS_FROM_NUMBER
-	unset TWILIO_SMS_MESSAGE
-	unset TWILIO_SMS_MEDIA
+  unset account_sid
+	unset auth_token
+	unset to_number
+	unset from_number
+	unset message
+	unset sms_media
 }
 
 function print_new_test {
@@ -108,27 +108,27 @@ test_results_success_count=0
 test_results_error_count=0
 
 
-# [TEST] Call the command with TWILIO_ACCOUNT_SID not set, 
+# [TEST] Call the command with account_sid not set,
 # it should raise an error message and exit
-# 
+#
 (
   print_new_test
   test_env_cleanup
 
   # Set env vars
-  export TWILIO_AUTH_TOKEN="dsa4321"
-  export TWILIO_SMS_TO_NUMBER="dsa4321"
-  export TWILIO_SMS_FROM_NUMBER="dsa4321"
-  export TWILIO_SMS_MESSAGE="dsa4321"
-  export TWILIO_SMS_MEDIA="dsa4321"
+  export auth_token="dsa4321"
+  export to_number="dsa4321"
+  export from_number="dsa4321"
+  export message="dsa4321"
+  export sms_media="dsa4321"
 
-  # All env vars should exist except TWILIO_ACCOUNT_SID
-  expect_error "TWILIO_ACCOUNT_SID environment variable should NOT be set" is_not_empty "$TWILIO_ACCOUNT_SID"
-  expect_success "TWILIO_AUTH_TOKEN environment variable should be set" is_not_empty "$TWILIO_AUTH_TOKEN"
-  expect_success "TWILIO_SMS_TO_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_TO_NUMBER"
-  expect_success "TWILIO_SMS_FROM_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_FROM_NUMBER"
-  expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
-	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
+  # All env vars should exist except account_sid
+  expect_error "account_sid environment variable should NOT be set" is_not_empty "$account_sid"
+  expect_success "auth_token environment variable should be set" is_not_empty "$auth_token"
+  expect_success "to_number environment variable should be set" is_not_empty "$to_number"
+  expect_success "from_number environment variable should be set" is_not_empty "$from_number"
+  expect_success "message environment variable should be set" is_not_empty "$message"
+	expect_success "sms_media environment variable should be set" is_not_empty "$sms_media"
 
   # Send sms request
   expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
@@ -137,27 +137,27 @@ test_result=$?
 inspect_test_result $test_result
 
 
-# [TEST] Call the command with TWILIO_AUTH_TOKEN not set, 
+# [TEST] Call the command with auth_token not set,
 # it should raise an error message and exit
-# 
+#
 (
   print_new_test
   test_env_cleanup
 
   # Set env vars
-  export TWILIO_ACCOUNT_SID="dsa4321"
-  export TWILIO_SMS_TO_NUMBER="dsa4321"
-  export TWILIO_SMS_FROM_NUMBER="dsa4321"
-  export TWILIO_SMS_MESSAGE="dsa4321"
-  export TWILIO_SMS_MEDIA="dsa4321"
+  export account_sid="dsa4321"
+  export to_number="dsa4321"
+  export from_number="dsa4321"
+  export message="dsa4321"
+  export sms_media="dsa4321"
 
-  # All env vars should exist except TWILIO_AUTH_TOKEN
-  expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
-  expect_error "TWILIO_AUTH_TOKEN environment variable should NOT be set" is_not_empty "$TWILIO_AUTH_TOKEN"
-  expect_success "TWILIO_SMS_TO_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_TO_NUMBER"
-  expect_success "TWILIO_SMS_FROM_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_FROM_NUMBER"
-  expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
-	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
+  # All env vars should exist except auth_token
+  expect_success "account_sid environment variable should be set" is_not_empty "$account_sid"
+  expect_error "auth_token environment variable should NOT be set" is_not_empty "$auth_token"
+  expect_success "to_number environment variable should be set" is_not_empty "$to_number"
+  expect_success "from_number environment variable should be set" is_not_empty "$from_number"
+  expect_success "message environment variable should be set" is_not_empty "$message"
+	expect_success "sms_media environment variable should be set" is_not_empty "$sms_media"
 
   # Send sms request
   expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
@@ -166,27 +166,27 @@ test_result=$?
 inspect_test_result $test_result
 
 
-# [TEST] Call the command with TWILIO_SMS_TO_NUMBER not set, 
+# [TEST] Call the command with to_number not set,
 # it should raise an error message and exit
-# 
+#
 (
   print_new_test
   test_env_cleanup
 
   # Set env vars
-  export TWILIO_ACCOUNT_SID="dsa4321"
-  export TWILIO_AUTH_TOKEN="dsa4321"
-  export TWILIO_SMS_FROM_NUMBER="dsa4321"
-  export TWILIO_SMS_MESSAGE="dsa4321"
-  export TWILIO_SMS_MEDIA="dsa4321"
+  export account_sid="dsa4321"
+  export auth_token="dsa4321"
+  export from_number="dsa4321"
+  export message="dsa4321"
+  export sms_media="dsa4321"
 
-  # All env vars should exist except TWILIO_SMS_TO_NUMBER
-  expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
-  expect_success "TWILIO_AUTH_TOKEN environment variable should be set" is_not_empty "$TWILIO_AUTH_TOKEN"
-  expect_error "TWILIO_SMS_TO_NUMBER environment variable should NOT be set" is_not_empty "$TWILIO_SMS_TO_NUMBER"
-  expect_success "TWILIO_SMS_FROM_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_FROM_NUMBER"
-  expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
-	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
+  # All env vars should exist except to_number
+  expect_success "account_sid environment variable should be set" is_not_empty "$account_sid"
+  expect_success "auth_token environment variable should be set" is_not_empty "$auth_token"
+  expect_error "to_number environment variable should NOT be set" is_not_empty "$to_number"
+  expect_success "from_number environment variable should be set" is_not_empty "$from_number"
+  expect_success "message environment variable should be set" is_not_empty "$message"
+	expect_success "sms_media environment variable should be set" is_not_empty "$sms_media"
 
   # Send sms request
   expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
@@ -195,27 +195,27 @@ test_result=$?
 inspect_test_result $test_result
 
 
-# [TEST] Call the command with TWILIO_SMS_FROM_NUMBER not set, 
+# [TEST] Call the command with from_number not set,
 # it should raise an error message and exit
-# 
+#
 (
   print_new_test
   test_env_cleanup
 
   # Set env vars
-  export TWILIO_ACCOUNT_SID="dsa4321"
-  export TWILIO_AUTH_TOKEN="dsa4321"
-  export TWILIO_SMS_TO_NUMBER="dsa4321"
-  export TWILIO_SMS_MESSAGE="dsa4321"
-  export TWILIO_SMS_MEDIA="dsa4321"
+  export account_sid="dsa4321"
+  export auth_token="dsa4321"
+  export to_number="dsa4321"
+  export message="dsa4321"
+  export sms_media="dsa4321"
 
-  # All env vars should exist except TWILIO_SMS_FROM_NUMBER
-  expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
-  expect_success "TWILIO_AUTH_TOKEN environment variable should be set" is_not_empty "$TWILIO_AUTH_TOKEN"
-  expect_success "TWILIO_SMS_TO_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_TO_NUMBER"
-  expect_error "TWILIO_SMS_FROM_NUMBER environment variable should NOT be set" is_not_empty "$TWILIO_SMS_FROM_NUMBER"
-  expect_success "TWILIO_SMS_MESSAGE environment variable should be set" is_not_empty "$TWILIO_SMS_MESSAGE"
-	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
+  # All env vars should exist except from_number
+  expect_success "account_sid environment variable should be set" is_not_empty "$account_sid"
+  expect_success "auth_token environment variable should be set" is_not_empty "$auth_token"
+  expect_success "to_number environment variable should be set" is_not_empty "$to_number"
+  expect_error "from_number environment variable should NOT be set" is_not_empty "$from_number"
+  expect_success "message environment variable should be set" is_not_empty "$message"
+	expect_success "sms_media environment variable should be set" is_not_empty "$sms_media"
 
   # Send sms request
   expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh
@@ -224,27 +224,27 @@ test_result=$?
 inspect_test_result $test_result
 
 
-# [TEST] Call the command with TWILIO_SMS_MESSAGE not set, 
+# [TEST] Call the command with message not set,
 # it should raise an error message and exit
-# 
+#
 (
   print_new_test
   test_env_cleanup
 
   # Set env vars
-  export TWILIO_ACCOUNT_SID="dsa4321"
-  export TWILIO_AUTH_TOKEN="dsa4321"
-  export TWILIO_SMS_TO_NUMBER="dsa4321"
-  export TWILIO_SMS_FROM_NUMBER="dsa4321"
-  export TWILIO_SMS_MEDIA="dsa4321"
+  export account_sid="dsa4321"
+  export auth_token="dsa4321"
+  export to_number="dsa4321"
+  export from_number="dsa4321"
+  export sms_media="dsa4321"
 
-  # All env vars should exist except TWILIO_SMS_MESSAGE
-  expect_success "TWILIO_ACCOUNT_SID environment variable should be set" is_not_empty "$TWILIO_ACCOUNT_SID"
-  expect_success "TWILIO_AUTH_TOKEN environment variable should be set" is_not_empty "$TWILIO_AUTH_TOKEN"
-  expect_success "TWILIO_SMS_TO_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_TO_NUMBER"
-  expect_success "TWILIO_SMS_FROM_NUMBER environment variable should be set" is_not_empty "$TWILIO_SMS_FROM_NUMBER"
-  expect_error "TWILIO_SMS_MESSAGE environment variable should NOT be set" is_not_empty "$TWILIO_SMS_MESSAGE"
-	expect_success "TWILIO_SMS_MEDIA environment variable should be set" is_not_empty "$TWILIO_SMS_MEDIA"
+  # All env vars should exist except message
+  expect_success "account_sid environment variable should be set" is_not_empty "$account_sid"
+  expect_success "auth_token environment variable should be set" is_not_empty "$auth_token"
+  expect_success "to_number environment variable should be set" is_not_empty "$to_number"
+  expect_success "from_number environment variable should be set" is_not_empty "$from_number"
+  expect_error "message environment variable should NOT be set" is_not_empty "$message"
+	expect_success "sms_media environment variable should be set" is_not_empty "$sms_media"
 
   # Send sms request
   expect_error "The command should be called, but should not complete sucessfully" print_and_do_command ./step.sh

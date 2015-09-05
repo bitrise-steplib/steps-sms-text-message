@@ -1,5 +1,5 @@
----
-name: "Twilio SMS Text Message Sender"
+title: Twilio SMS Text Message Sender
+summary: Twilio SMS Text Message Sender
 description: |
   SMS Text Message Sender using [https://www.twilio.com/](https://www.twilio.com/)
 
@@ -8,11 +8,12 @@ description: |
 
   Important! [Info about recipient charging](https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged)
 website: https://github.com/bitrise-io/steps-sms-text-message
-source:
-  git: https://github.com/bitrise-io/steps-sms-text-message.git
+source_code_url: https://github.com/bitrise-io/steps-sms-text-message
+support_url: https://github.com/bitrise-io/steps-sms-text-message/issues
 host_os_tags:
   - osx-10.9
   - osx-10.10
+project_type_tags: []
 type_tags:
   - "IM"
   - "messaging"
@@ -20,29 +21,56 @@ type_tags:
   - "text message"
   - "notification"
 is_requires_admin_user: false
+is_always_run: true
+is_skippable: false
+dependencies: []
+run_if: ""
 inputs:
-  - 
-    mapped_to: TWILIO_ACCOUNT_SID
-    title: "Twilio Account SID"
-    is_expand: false
-    is_required: true
-  - 
-    mapped_to: TWILIO_AUTH_TOKEN
-    title: "Twilio account authentication token"
-    is_expand: false
-    is_required: true
-  - 
-    mapped_to: TWILIO_SMS_FROM_NUMBER
-    title: "Twilio SMS From number"
-    is_expand: false
-    is_required: true
-  - 
-    mapped_to: TWILIO_SMS_TO_NUMBER
-    title: "Send SMS To number (only one allowed)"
-    is_expand: false
-    is_required: true
-  - 
-    mapped_to: TWILIO_SMS_MESSAGE
-    title: "SMS message"
-    is_expand: true
-    is_required: true
+  - account_sid: ""
+    opts:
+      title: "Twilio Account SID"
+      description:  ""
+      summary: ""
+      is_expand: false
+      is_required: true
+      is_dont_change_value: false
+  - auth_token: ""
+    opts:
+      title: "Twilio account authentication token"
+      description:  ""
+      summary: ""
+      is_expand: false
+      is_required: true
+      is_dont_change_value: false
+  - from_number: ""
+    opts:
+      title: "Twilio SMS From number"
+      description:  ""
+      summary: ""
+      is_expand: false
+      is_required: true
+      is_dont_change_value: false
+  - to_number: ""
+    opts:
+      title: "Send SMS To number (only one allowed)"
+      description:  ""
+      summary: ""
+      is_expand: false
+      is_required: true
+      is_dont_change_value: false
+  - message: ""
+    opts:
+      title: "SMS message"
+      description:  ""
+      summary: ""
+      is_expand: true
+      is_required: true
+      is_dont_change_value: false
+  - sms_media: ""
+    opts:
+      title: "SMS media"
+      description:  ""
+      summary: ""
+      is_expand: true
+      is_required: false
+      is_dont_change_value: false
