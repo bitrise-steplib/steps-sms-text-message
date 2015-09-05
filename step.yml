@@ -46,3 +46,8 @@ inputs:
     title: "SMS message"
     is_expand: true
     is_required: true
+  - 
+    mapped_to: TWILIO_SMS_ERROR_MESSAGE
+    title: "SMS message - if the build failed"
+    is_expand: true
+    is_required: false
