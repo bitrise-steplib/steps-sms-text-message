@@ -1,6 +1,6 @@
 title: Twilio SMS Text Message Sender
 summary: Twilio SMS Text Message Sender
-description: |
+description: |-
   SMS Text Message Sender using [https://www.twilio.com/](https://www.twilio.com/)
 
   To use their service you have to register first.
@@ -74,3 +74,4 @@ inputs:
       is_expand: true
       is_required: false
       is_dont_change_value: false
+outputs: []
