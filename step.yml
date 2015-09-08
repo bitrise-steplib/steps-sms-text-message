@@ -6,7 +6,9 @@ description: |-
   To use their service you have to register first.
   It is possible to register a trial account for free.
 
-  Important! [Info about recipient charging](https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged)
+  **Important!**
+  
+  [Info about recipient charging](https://www.twilio.com/help/faq/sms/when-i-send-an-sms-message-through-twilio-does-the-recipient-of-my-sms-message-get-charged)
 website: https://github.com/bitrise-io/steps-sms-text-message
 source_code_url: https://github.com/bitrise-io/steps-sms-text-message
 support_url: https://github.com/bitrise-io/steps-sms-text-message/issues
@@ -45,7 +47,10 @@ inputs:
   - from_number: ""
     opts:
       title: "Twilio SMS From number"
-      description:  ""
+      description: |-
+        Your Twilio sender number,
+        in E.164 format [http://en.wikipedia.org/wiki/E.164](http://en.wikipedia.org/wiki/E.164)
+        (i.e. without hyphens)
       summary: ""
       is_expand: false
       is_required: true
@@ -53,7 +58,10 @@ inputs:
   - to_number: ""
     opts:
       title: "Send SMS To number (only one allowed)"
-      description:  ""
+      description: |
+        Receiver's phone number,
+        in E.164 format [http://en.wikipedia.org/wiki/E.164](http://en.wikipedia.org/wiki/E.164)
+        (i.e. without hyphens)
       summary: ""
       is_expand: false
       is_required: true
