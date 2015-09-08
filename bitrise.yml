@@ -1,0 +1,17 @@
+format_version: 0.9.10
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+app:
+  envs:
+  # define these in your .bitrise.secrets.yml
+  - account_sid:
+  - auth_token:
+  - from_number:
+  - to_number:
+  - message:
+
+workflows:
+  test:
+    steps:
+    - path::./:
+        inputs:
