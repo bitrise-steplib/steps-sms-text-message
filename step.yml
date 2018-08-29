@@ -36,17 +36,15 @@ inputs:
       title: "Twilio Account SID"
       description:  ""
       summary: ""
-      is_expand: false
+      is_sensitive: true
       is_required: true
-      is_dont_change_value: false
   - auth_token: ""
     opts:
       title: "Twilio account authentication token"
       description:  ""
       summary: ""
-      is_expand: false
+      is_sensitive: true
       is_required: true
-      is_dont_change_value: false
   - from_number: ""
     opts:
       title: "Twilio SMS From number"
@@ -55,9 +53,8 @@ inputs:
         in E.164 format [http://en.wikipedia.org/wiki/E.164](http://en.wikipedia.org/wiki/E.164)
         (i.e. without hyphens)
       summary: ""
-      is_expand: false
+      is_sensitive: true
       is_required: true
-      is_dont_change_value: false
   - to_number: ""
     opts:
       title: "Send SMS To number (only one allowed)"
@@ -66,23 +63,18 @@ inputs:
         in E.164 format [http://en.wikipedia.org/wiki/E.164](http://en.wikipedia.org/wiki/E.164)
         (i.e. without hyphens)
       summary: ""
-      is_expand: false
+      is_sensitive: true
       is_required: true
-      is_dont_change_value: false
   - message: ""
     opts:
       title: "SMS message"
       description:  ""
       summary: ""
-      is_expand: true
       is_required: true
-      is_dont_change_value: false
   - sms_media: ""
     opts:
       title: "SMS media"
       description:  ""
       summary: ""
       is_expand: true
-      is_required: false
-      is_dont_change_value: false
 outputs: []
