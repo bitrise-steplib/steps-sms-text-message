@@ -4,11 +4,9 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 workflows:
   test:
     steps:
-    - path::./:
+    - script:
         inputs:
-        # define these in your .bitrise.secrets.yml
-        - account_sid:
-        - auth_token:
-        - from_number:
-        - to_number:
-        - message: Test message.
+        - content: |-
+            #!/bin/bash
+            set -ex
+            stepman audit --step-yml ./step.yml
